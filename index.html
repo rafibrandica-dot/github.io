@@ -3,125 +3,980 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SkillRise Academy</title>
-
+<title>SkillRise Academy — Master Future Skills & Build Income Online</title>
+<meta name="description" content="Learn digital marketing, AI tools, freelancing, and online business skills. Start your journey to financial freedom today.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-body {
-  font-family: Arial;
-  background: #f9f6f0;
-  margin: 0;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 20px;
-}
+  :root {
+    --cream: #F9F6F0;
+    --beige: #EDE8DF;
+    --beige-dark: #D9D0C0;
+    --sage: #7A9E8A;
+    --sage-light: #A8C5B0;
+    --sage-dark: #4E7A62;
+    --gold: #C8963E;
+    --gold-light: #E8B86D;
+    --gold-glow: rgba(200, 150, 62, 0.25);
+    --text-dark: #1C1A16;
+    --text-mid: #4A453C;
+    --text-muted: #7A7268;
+    --white: #FFFFFF;
+    --glass: rgba(255,255,255,0.55);
+    --glass-border: rgba(255,255,255,0.7);
+    --shadow-soft: 0 8px 40px rgba(28,26,22,0.08);
+    --shadow-card: 0 4px 24px rgba(28,26,22,0.06);
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --radius-pill: 999px;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
 
-.player {
-  width: 100%;
-  height: 500px;
-  margin-bottom: 20px;
-}
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
 
-iframe {
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  border: none;
-}
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 18px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(249,246,240,0.82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(200,150,62,0.1);
+    transition: all 0.3s ease;
+  }
+  nav.scrolled { padding: 12px 5%; box-shadow: 0 2px 24px rgba(28,26,22,0.08); }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--text-dark); text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-logo-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 10px var(--gold-glow);
+    display: inline-block;
+  }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a {
+    text-decoration: none; color: var(--text-mid); font-size: 0.9rem;
+    font-weight: 500; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--sage-dark); }
+  .nav-cta {
+    background: var(--text-dark); color: var(--cream) !important;
+    padding: 10px 22px; border-radius: var(--radius-pill);
+    font-weight: 600 !important; transition: all 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--sage-dark) !important; color: var(--white) !important; transform: translateY(-1px); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { width: 24px; height: 2px; background: var(--text-dark); border-radius: 2px; transition: all 0.3s; display: block; }
+  .mobile-menu {
+    display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
+    background: rgba(249,246,240,0.97); backdrop-filter: blur(20px);
+    padding: 24px 5%; flex-direction: column; gap: 20px;
+    border-bottom: 1px solid var(--beige-dark);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { text-decoration: none; color: var(--text-dark); font-size: 1.05rem; font-weight: 500; padding: 8px 0; border-bottom: 1px solid var(--beige); }
+  .mobile-cta-btn { background: var(--text-dark) !important; color: var(--cream) !important; text-align: center; border-radius: var(--radius-pill); padding: 14px !important; border-bottom: none !important; }
 
-.video-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-}
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; padding: 140px 5% 80px;
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(122,158,138,0.13) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 50% at 10% 80%, rgba(200,150,62,0.08) 0%, transparent 60%),
+                var(--cream);
+  }
+  .hero-blob {
+    position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.6; z-index: 0;
+    animation: floatBlob 8s ease-in-out infinite;
+  }
+  .blob1 { width: 420px; height: 420px; background: rgba(122,158,138,0.18); top: -60px; right: 5%; animation-delay: 0s; }
+  .blob2 { width: 280px; height: 280px; background: rgba(200,150,62,0.12); bottom: 80px; right: 30%; animation-delay: -3s; }
+  .blob3 { width: 200px; height: 200px; background: rgba(168,197,176,0.2); top: 30%; left: -50px; animation-delay: -6s; }
+  @keyframes floatBlob {
+    0%,100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(20px,-20px) scale(1.05); }
+    66% { transform: translate(-10px,15px) scale(0.97); }
+  }
+  .hero-inner {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; width: 100%;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--glass); border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px); border-radius: var(--radius-pill);
+    padding: 8px 18px; font-size: 0.8rem; font-weight: 600;
+    color: var(--sage-dark); margin-bottom: 24px; width: fit-content;
+    box-shadow: 0 2px 12px rgba(122,158,138,0.15);
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--sage); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.3)} }
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 700; line-height: 1.15;
+    color: var(--text-dark); margin-bottom: 24px;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  h1 em { font-style: italic; color: var(--sage-dark); }
+  h1 .highlight {
+    position: relative; display: inline-block;
+    color: var(--gold);
+  }
+  h1 .highlight::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    border-radius: 2px;
+  }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--text-mid); line-height: 1.75;
+    max-width: 480px; margin-bottom: 36px;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.7s 0.3s ease both; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--sage-dark), var(--sage));
+    color: var(--white); border: none; cursor: pointer;
+    padding: 16px 32px; border-radius: var(--radius-pill);
+    font-family: var(--font-body); font-size: 0.95rem; font-weight: 600;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    box-shadow: 0 8px 28px rgba(78,122,98,0.35);
+    transition: all 0.25s ease;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(78,122,98,0.45); }
+  .btn-primary svg { transition: transform 0.2s; }
+  .btn-primary:hover svg { transform: translateX(3px); }
+  .btn-secondary {
+    background: transparent; color: var(--text-dark); border: 1.5px solid var(--beige-dark);
+    padding: 15px 28px; border-radius: var(--radius-pill);
+    font-family: var(--font-body); font-size: 0.95rem; font-weight: 500;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.25s ease; cursor: pointer;
+  }
+  .btn-secondary:hover { border-color: var(--sage); color: var(--sage-dark); transform: translateY(-2px); }
+  .hero-stats { display: flex; gap: 32px; margin-top: 48px; animation: fadeUp 0.7s 0.4s ease both; }
+  .stat-item { display: flex; flex-direction: column; gap: 2px; }
+  .stat-num { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--text-dark); }
+  .stat-label { font-size: 0.78rem; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+  .hero-visual { position: relative; animation: fadeUp 0.9s 0.2s ease both; }
+  .hero-img-wrap {
+    position: relative; border-radius: var(--radius-xl); overflow: hidden;
+    aspect-ratio: 4/5; max-height: 580px;
+    box-shadow: 0 24px 80px rgba(28,26,22,0.14);
+  }
+  .hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(28,26,22,0.35) 100%);
+  }
+  .hero-float-card {
+    position: absolute; background: var(--glass);
+    backdrop-filter: blur(16px); border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg); padding: 14px 18px;
+    box-shadow: 0 8px 32px rgba(28,26,22,0.12);
+  }
+  .float-card-1 { top: 28px; left: -24px; }
+  .float-card-2 { bottom: 48px; right: -20px; }
+  .float-card-3 { bottom: 160px; left: -18px; }
+  .float-card-1 .fc-label, .float-card-2 .fc-label, .float-card-3 .fc-label {
+    font-size: 0.72rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;
+  }
+  .float-card-1 .fc-val, .float-card-2 .fc-val, .float-card-3 .fc-val {
+    font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--text-dark);
+  }
+  .fc-row { display: flex; align-items: center; gap: 10px; }
+  .fc-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+  .fc-icon-green { background: rgba(122,158,138,0.15); }
+  .fc-icon-gold { background: rgba(200,150,62,0.15); }
+  .avatar-stack { display: flex; }
+  .avatar-stack .av { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--white); margin-left: -8px; object-fit: cover; background: var(--beige); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 600; color: var(--sage-dark); }
+  .avatar-stack .av:first-child { margin-left: 0; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-.video {
-  cursor: pointer;
-  background: white;
-  padding: 10px;
-  border-radius: 12px;
-  transition: 0.3s;
-}
+  /* ── SECTION SHARED ── */
+  section { padding: 90px 5%; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--sage-dark); margin-bottom: 14px;
+  }
+  .section-tag::before { content: ''; width: 20px; height: 2px; background: var(--sage); border-radius: 1px; display: block; }
+  .section-title { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+  .section-sub { color: var(--text-mid); font-size: 1rem; max-width: 560px; line-height: 1.75; }
+  .section-head { margin-bottom: 52px; }
+  .text-center { text-align: center; }
+  .section-sub.centered { margin: 0 auto; }
 
-.video:hover {
-  transform: scale(1.03);
-}
+  /* ── VIDEO SECTION ── */
+  .video-section { background: linear-gradient(180deg, var(--cream) 0%, var(--beige) 100%); }
+  .main-player-wrap {
+    position: relative; border-radius: var(--radius-xl); overflow: hidden;
+    aspect-ratio: 16/9; background: var(--text-dark);
+    box-shadow: 0 20px 70px rgba(28,26,22,0.18);
+    margin-bottom: 32px;
+  }
+  .main-player-wrap iframe {
+    width: 100%; height: 100%; border: none; display: block;
+    transition: opacity 0.3s ease;
+  }
+  .player-overlay {
+    position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(28,26,22,0.6) 100%);
+    pointer-events: none;
+  }
+  .player-title-bar {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 20px 24px; display: flex; align-items: flex-end; justify-content: space-between;
+    pointer-events: none;
+  }
+  .player-course-name {
+    font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.65); margin-bottom: 4px;
+  }
+  .player-course-title {
+    font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--white);
+  }
+  .player-live-badge {
+    background: rgba(200,150,62,0.9); color: var(--white);
+    padding: 5px 12px; border-radius: var(--radius-pill);
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .video-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  .vid-card {
+    background: var(--white); border-radius: var(--radius-lg);
+    overflow: hidden; cursor: pointer;
+    box-shadow: var(--shadow-card);
+    transition: all 0.25s ease; border: 2px solid transparent;
+    position: relative;
+  }
+  .vid-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(28,26,22,0.1); }
+  .vid-card.active { border-color: var(--sage); box-shadow: 0 0 0 4px rgba(122,158,138,0.15), 0 8px 32px rgba(28,26,22,0.08); }
+  .vid-thumb {
+    position: relative; aspect-ratio: 16/9; overflow: hidden;
+    background: var(--beige);
+  }
+  .vid-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+  .vid-card:hover .vid-thumb img { transform: scale(1.04); }
+  .vid-play-btn {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(28,26,22,0.3);
+    transition: background 0.2s;
+  }
+  .vid-card:hover .vid-play-btn { background: rgba(28,26,22,0.5); }
+  .vid-card.active .vid-play-btn { background: rgba(78,122,98,0.3); }
+  .play-icon {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,0.95);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+  .vid-card:hover .play-icon, .vid-card.active .play-icon { transform: scale(1.1); }
+  .play-icon svg { margin-left: 2px; }
+  .vid-active-indicator {
+    position: absolute; top: 8px; right: 8px;
+    background: var(--sage); color: var(--white);
+    font-size: 0.65rem; font-weight: 700; padding: 3px 9px; border-radius: var(--radius-pill);
+    text-transform: uppercase; letter-spacing: 0.05em; opacity: 0; transition: opacity 0.2s;
+  }
+  .vid-card.active .vid-active-indicator { opacity: 1; }
+  .vid-info { padding: 14px 16px 16px; }
+  .vid-category { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sage-dark); margin-bottom: 5px; }
+  .vid-title { font-weight: 600; font-size: 0.88rem; color: var(--text-dark); line-height: 1.4; margin-bottom: 8px; }
+  .vid-meta { display: flex; align-items: center; gap: 10px; }
+  .vid-duration { font-size: 0.75rem; color: var(--text-muted); display: flex; align-items: center; gap: 4px; }
 
-.video.active {
-  border: 2px solid #4E7A62;
-}
+  /* ── COURSES / BENEFITS ── */
+  .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .benefit-card {
+    background: var(--white); border-radius: var(--radius-xl); padding: 32px 24px;
+    box-shadow: var(--shadow-card); border: 1px solid var(--beige);
+    transition: all 0.28s ease; position: relative; overflow: hidden;
+  }
+  .benefit-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--sage), var(--sage-light));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .benefit-card:hover { transform: translateY(-6px); box-shadow: 0 16px 50px rgba(28,26,22,0.1); }
+  .benefit-card:hover::before { opacity: 1; }
+  .benefit-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: linear-gradient(135deg, rgba(122,158,138,0.15), rgba(200,150,62,0.08));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin-bottom: 20px;
+  }
+  .benefit-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; }
+  .benefit-desc { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 16px; }
+  .benefit-link { font-size: 0.8rem; font-weight: 600; color: var(--sage-dark); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+  .benefit-link:hover { gap: 8px; }
 
-.video img {
-  width: 100%;
-  border-radius: 8px;
-}
+  /* ── TESTIMONIALS ── */
+  .testimonials-section { background: var(--beige); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .testi-card {
+    background: var(--white); border-radius: var(--radius-xl);
+    padding: 32px 28px; box-shadow: var(--shadow-card);
+    border: 1px solid var(--beige); transition: all 0.28s ease;
+    position: relative;
+  }
+  .testi-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(28,26,22,0.1); }
+  .testi-card.featured { background: linear-gradient(135deg, var(--sage-dark), var(--sage)); color: var(--white); border: none; }
+  .testi-quote-icon { font-size: 2.5rem; line-height: 1; margin-bottom: 16px; opacity: 0.3; font-family: var(--font-display); }
+  .testi-card.featured .testi-quote-icon { opacity: 0.5; color: var(--white); }
+  .testi-text { font-size: 0.92rem; line-height: 1.8; color: var(--text-mid); margin-bottom: 24px; }
+  .testi-card.featured .testi-text { color: rgba(255,255,255,0.88); }
+  .stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 14px; }
+  .testi-card.featured .stars { color: var(--gold-light); }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; background: var(--beige); }
+  .testi-name { font-weight: 600; font-size: 0.9rem; color: var(--text-dark); }
+  .testi-card.featured .testi-name { color: var(--white); }
+  .testi-role { font-size: 0.75rem; color: var(--text-muted); }
+  .testi-card.featured .testi-role { color: rgba(255,255,255,0.65); }
+  .testi-result {
+    position: absolute; top: 24px; right: 24px;
+    background: rgba(200,150,62,0.12); border: 1px solid rgba(200,150,62,0.2);
+    color: var(--gold); padding: 4px 10px; border-radius: var(--radius-pill);
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .testi-card.featured .testi-result { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); color: var(--white); }
 
-.title {
-  margin-top: 8px;
-  font-weight: bold;
-}
+  /* ── CTA SECTION ── */
+  .cta-section { padding: 80px 5%; }
+  .cta-inner {
+    max-width: 1200px; margin: 0 auto;
+    background: linear-gradient(135deg, var(--text-dark) 0%, #2D2A22 100%);
+    border-radius: 32px; padding: 72px 60px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-bg-blob {
+    position: absolute; border-radius: 50%; filter: blur(80px); z-index: 0;
+  }
+  .cta-blob1 { width: 400px; height: 400px; background: rgba(122,158,138,0.1); top: -100px; right: -50px; }
+  .cta-blob2 { width: 200px; height: 200px; background: rgba(200,150,62,0.12); bottom: -50px; left: 40%; }
+  .cta-content { position: relative; z-index: 1; }
+  .cta-tag { display: inline-block; background: rgba(200,150,62,0.15); color: var(--gold-light); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 6px 14px; border-radius: var(--radius-pill); margin-bottom: 20px; }
+  .cta-title { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 16px; }
+  .cta-title em { font-style: italic; color: var(--sage-light); }
+  .cta-sub { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.75; }
+  .cta-perks { position: relative; z-index: 1; }
+  .perk-list { list-style: none; display: flex; flex-direction: column; gap: 18px; margin-bottom: 36px; }
+  .perk-item { display: flex; align-items: center; gap: 14px; color: rgba(255,255,255,0.85); font-size: 0.92rem; }
+  .perk-check { width: 26px; height: 26px; border-radius: 8px; background: rgba(122,158,138,0.2); border: 1px solid rgba(122,158,138,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .btn-cta-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--text-dark); border: none; cursor: pointer;
+    padding: 18px 40px; border-radius: var(--radius-pill);
+    font-family: var(--font-body); font-size: 1rem; font-weight: 700;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+    box-shadow: 0 8px 28px rgba(200,150,62,0.35);
+    transition: all 0.25s ease;
+  }
+  .btn-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(200,150,62,0.5); }
+  .cta-guarantee { margin-top: 14px; font-size: 0.78rem; color: rgba(255,255,255,0.35); display: flex; align-items: center; gap: 6px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text-dark); color: rgba(255,255,255,0.6);
+    padding: 60px 5% 30px;
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-brand .nav-logo { color: var(--white); margin-bottom: 14px; display: flex; }
+  .footer-brand p { font-size: 0.85rem; line-height: 1.75; color: rgba(255,255,255,0.45); max-width: 260px; margin-bottom: 20px; }
+  .social-links { display: flex; gap: 10px; }
+  .social-link {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center; text-decoration: none;
+    color: rgba(255,255,255,0.5); font-size: 0.85rem; transition: all 0.2s;
+  }
+  .social-link:hover { background: rgba(122,158,138,0.2); border-color: var(--sage); color: var(--sage-light); }
+  .footer-col h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); margin-bottom: 18px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--sage-light); }
+  .footer-bottom { padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .footer-copy { font-size: 0.8rem; }
+  .footer-legal { display: flex; gap: 20px; }
+  .footer-legal a { font-size: 0.8rem; color: rgba(255,255,255,0.35); text-decoration: none; }
+  .footer-legal a:hover { color: rgba(255,255,255,0.6); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .hero-visual { display: none; }
+    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid .testi-card:last-child { display: none; }
+    .cta-inner { grid-template-columns: 1fr; padding: 52px 40px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+    .video-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    section { padding: 64px 5%; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .benefits-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .testimonials-grid .testi-card:last-child { display: block; }
+    .hero { padding: 120px 5% 64px; }
+    .hero-stats { gap: 20px; flex-wrap: wrap; }
+    .cta-inner { padding: 40px 28px; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+    .video-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .benefits-grid { grid-template-columns: 1fr; }
+    .video-grid { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; }
+    .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
+  }
 </style>
 </head>
-
 <body>
 
-<div class="container">
-
-  <!-- MAIN PLAYER -->
-  <div class="player">
-    <iframe id="player"
-      src="https://www.youtube.com/embed/tgbNymZ7vqY?rel=0&modestbranding=1&enablejsapi=1&origin="
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Skill<span>Rise</span> <span class="nav-logo-dot"></span></a>
+  <div class="nav-links">
+    <a href="#courses">Courses</a>
+    <a href="#videos">Free Lessons</a>
+    <a href="#testimonials">Success Stories</a>
+    <a href="#cta" class="nav-cta">Start Learning</a>
   </div>
-
-  <!-- VIDEO LIST -->
-  <div class="video-grid">
-
-    <div class="video active" onclick="play(this,'tgbNymZ7vqY')">
-      <img src="https://img.youtube.com/vi/tgbNymZ7vqY/0.jpg">
-      <div class="title">Digital Marketing</div>
-    </div>
-
-    <div class="video" onclick="play(this,'ScMzIvxBSi4')">
-      <img src="https://img.youtube.com/vi/ScMzIvxBSi4/0.jpg">
-      <div class="title">ChatGPT Tutorial</div>
-    </div>
-
-    <div class="video" onclick="play(this,'ysz5S6PUM-U')">
-      <img src="https://img.youtube.com/vi/ysz5S6PUM-U/0.jpg">
-      <div class="title">Dropshipping</div>
-    </div>
-
-    <div class="video" onclick="play(this,'dQw4w9WgXcQ')">
-      <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg">
-      <div class="title">Meta Ads</div>
-    </div>
-
-  </div>
-
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#courses">Courses</a>
+  <a href="#videos">Free Lessons</a>
+  <a href="#testimonials">Success Stories</a>
+  <a href="#cta" class="mobile-cta-btn">Start Learning Now →</a>
 </div>
 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-blob blob3"></div>
+
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Over 12,000 students already enrolled
+      </div>
+      <h1>Master <em>Future Skills</em> &amp; Build <span class="highlight">Income</span> Online</h1>
+      <p class="hero-sub">Learn digital marketing, AI tools, freelancing, and online business — practical skills that translate directly into real income, no fluff.</p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn-primary">
+          Start Learning Now
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#videos" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l6 4-6 4V4z" fill="currentColor" opacity=".8"/></svg>
+          Watch Free Lessons
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">12K+</span>
+          <span class="stat-label">Students</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">4.9★</span>
+          <span class="stat-label">Rating</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">₹3L+</span>
+          <span class="stat-label">Avg. Earnings</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">40+</span>
+          <span class="stat-label">Lessons</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-img-wrap">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&q=80" alt="Students learning online" loading="lazy">
+        <div class="hero-img-overlay"></div>
+      </div>
+      <!-- Float Cards -->
+      <div class="hero-float-card float-card-1">
+        <div class="fc-row">
+          <div class="fc-icon fc-icon-green">🎯</div>
+          <div>
+            <div class="fc-label">This Month</div>
+            <div class="fc-val">847 joined</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-float-card float-card-2">
+        <div class="fc-label">Active Learners</div>
+        <div class="fc-row" style="margin-top:6px">
+          <div class="avatar-stack">
+            <div class="av">A</div>
+            <div class="av">R</div>
+            <div class="av">M</div>
+            <div class="av">+</div>
+          </div>
+          <div class="fc-val" style="font-size:1rem">+12K</div>
+        </div>
+      </div>
+      <div class="hero-float-card float-card-3">
+        <div class="fc-row">
+          <div class="fc-icon fc-icon-gold">💰</div>
+          <div>
+            <div class="fc-label">Student Earned</div>
+            <div class="fc-val">₹85,000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<section class="video-section" id="videos">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-tag">Free Lessons</div>
+      <h2 class="section-title">Learn Before You Commit</h2>
+      <p class="section-sub">Get a real taste of what you'll master. Click any topic below and start watching instantly.</p>
+    </div>
+
+    <!-- Main Player -->
+    <div class="main-player-wrap" id="mainPlayer">
+      <iframe
+        id="youtubePlayer"
+        src="https://www.youtube.com/embed/nU-IIXBWlS4?autoplay=0&rel=0&modestbranding=1"
+        allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        title="Featured Lesson"
+      ></iframe>
+      <div class="player-overlay"></div>
+      <div class="player-title-bar">
+        <div>
+          <div class="player-course-name" id="playerCategory">Digital Marketing</div>
+          <div class="player-course-title" id="playerTitle">Complete Digital Marketing Guide</div>
+        </div>
+        <div class="player-live-badge">Free Lesson</div>
+      </div>
+    </div>
+
+    <!-- Video Cards Grid -->
+    <div class="video-grid">
+      <div class="vid-card active" onclick="switchVideo(this)" 
+           data-video-id="nU-IIXBWlS4"
+           data-category="Digital Marketing"
+           data-title="Complete Digital Marketing Guide">
+        <div class="vid-thumb">
+          <img src="https://img.youtube.com/vi/nU-IIXBWlS4/mqdefault.jpg" alt="Digital Marketing">
+          <div class="vid-play-btn">
+            <div class="play-icon">
+              <svg width="14" height="16" viewBox="0 0 14 16" fill="none"><path d="M1 1l12 7-12 7V1z" fill="#1C1A16"/></svg>
+            </div>
+          </div>
+          <div class="vid-active-indicator">Now Playing</div>
+        </div>
+        <div class="vid-info">
+          <div class="vid-category">Digital Marketing</div>
+          <div class="vid-title">Complete Digital Marketing Guide</div>
+          <div class="vid-meta">
+            <span class="vid-duration">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3.5V6l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Beginner
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="vid-card" onclick="switchVideo(this)"
+           data-video-id="JMyvmFnMaEc"
+           data-category="AI Tools"
+           data-title="ChatGPT & AI Tools Masterclass">
+        <div class="vid-thumb">
+          <img src="https://img.youtube.com/vi/JMyvmFnMaEc/mqdefault.jpg" alt="ChatGPT AI Tools">
+          <div class="vid-play-btn">
+            <div class="play-icon">
+              <svg width="14" height="16" viewBox="0 0 14 16" fill="none"><path d="M1 1l12 7-12 7V1z" fill="#1C1A16"/></svg>
+            </div>
+          </div>
+          <div class="vid-active-indicator">Now Playing</div>
+        </div>
+        <div class="vid-info">
+          <div class="vid-category">AI Tools</div>
+          <div class="vid-title">ChatGPT & AI Tools Masterclass</div>
+          <div class="vid-meta">
+            <span class="vid-duration">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3.5V6l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              All Levels
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="vid-card" onclick="switchVideo(this)"
+           data-video-id="pKdLx2GNqcM"
+           data-category="Dropshipping"
+           data-title="Start Dropshipping in 2025">
+        <div class="vid-thumb">
+          <img src="https://img.youtube.com/vi/pKdLx2GNqcM/mqdefault.jpg" alt="Dropshipping">
+          <div class="vid-play-btn">
+            <div class="play-icon">
+              <svg width="14" height="16" viewBox="0 0 14 16" fill="none"><path d="M1 1l12 7-12 7V1z" fill="#1C1A16"/></svg>
+            </div>
+          </div>
+          <div class="vid-active-indicator">Now Playing</div>
+        </div>
+        <div class="vid-info">
+          <div class="vid-category">Dropshipping</div>
+          <div class="vid-title">Start Dropshipping in 2025</div>
+          <div class="vid-meta">
+            <span class="vid-duration">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3.5V6l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Intermediate
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="vid-card" onclick="switchVideo(this)"
+           data-video-id="M6_a2wBK-yc"
+           data-category="Meta Ads"
+           data-title="Meta Ads Complete Course">
+        <div class="vid-thumb">
+          <img src="https://img.youtube.com/vi/M6_a2wBK-yc/mqdefault.jpg" alt="Meta Ads">
+          <div class="vid-play-btn">
+            <div class="play-icon">
+              <svg width="14" height="16" viewBox="0 0 14 16" fill="none"><path d="M1 1l12 7-12 7V1z" fill="#1C1A16"/></svg>
+            </div>
+          </div>
+          <div class="vid-active-indicator">Now Playing</div>
+        </div>
+        <div class="vid-info">
+          <div class="vid-category">Meta Ads</div>
+          <div class="vid-title">Meta Ads Complete Course</div>
+          <div class="vid-meta">
+            <span class="vid-duration">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3.5V6l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Advanced
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS / COURSES -->
+<section id="courses">
+  <div class="section-inner">
+    <div class="section-head text-center">
+      <div class="section-tag" style="margin: 0 auto 14px">What You'll Gain</div>
+      <h2 class="section-title">Skills That Pay, Not Just Certificates</h2>
+      <p class="section-sub centered">Each path is built around one goal: helping you generate real income using today's most in-demand digital skills.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">💸</div>
+        <div class="benefit-title">Earn Online</div>
+        <p class="benefit-desc">From freelancing to running your own online business — discover multiple streams of income that work even while you sleep.</p>
+        <a href="#cta" class="benefit-link">Explore path →</a>
+      </div>
+      <div class="benefit-card reveal reveal-delay-1">
+        <div class="benefit-icon">🛠️</div>
+        <div class="benefit-title">Freelancing Skills</div>
+        <p class="benefit-desc">Land high-paying clients on Fiverr, Upwork, and LinkedIn by mastering the exact skills that top freelancers charge ₹50K+ for.</p>
+        <a href="#cta" class="benefit-link">Explore path →</a>
+      </div>
+      <div class="benefit-card reveal reveal-delay-2">
+        <div class="benefit-icon">📈</div>
+        <div class="benefit-title">Business Growth</div>
+        <p class="benefit-desc">Unlock Meta Ads, SEO, and email marketing strategies that have helped small brands scale from zero to ₹10L/month.</p>
+        <a href="#cta" class="benefit-link">Explore path →</a>
+      </div>
+      <div class="benefit-card reveal reveal-delay-3">
+        <div class="benefit-icon">🤖</div>
+        <div class="benefit-title">AI Productivity</div>
+        <p class="benefit-desc">Use ChatGPT, Midjourney, and automation tools to do 10x the work in half the time — and offer AI-powered services clients crave.</p>
+        <a href="#cta" class="benefit-link">Explore path →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="section-inner">
+    <div class="section-head text-center">
+      <div class="section-tag" style="margin: 0 auto 14px">Success Stories</div>
+      <h2 class="section-title">Real People, Real Results</h2>
+      <p class="section-sub centered">Our students don't just learn — they earn. Here's what happened when they started.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card reveal">
+        <div class="testi-result">₹1.2L/mo</div>
+        <div class="testi-quote-icon">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">I had zero experience in digital marketing. Within 4 months of finishing the course, I was earning ₹1.2 lakhs per month running Meta Ads for local businesses. This course literally changed my life.</p>
+        <div class="testi-author">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Arjun" class="testi-avatar">
+          <div>
+            <div class="testi-name">Arjun Sharma</div>
+            <div class="testi-role">Digital Marketing Freelancer, Bangalore</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card featured reveal reveal-delay-1">
+        <div class="testi-result">₹85K/mo</div>
+        <div class="testi-quote-icon">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">The AI tools module was mind-blowing. I now offer AI content services to international clients and earn in dollars. The ROI on this course was visible within the first 3 weeks.</p>
+        <div class="testi-author">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Nadia" class="testi-avatar" style="border: 2px solid rgba(255,255,255,0.3)">
+          <div>
+            <div class="testi-name">Nadia Rahman</div>
+            <div class="testi-role">AI Content Specialist, Remote</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-result">₹45K side income</div>
+        <div class="testi-quote-icon">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">I'm a full-time engineer, and I use the dropshipping knowledge from this course to run a side business that makes ₹45K monthly. Clear, practical, no fluff — exactly what I needed.</p>
+        <div class="testi-author">
+          <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Rahul" class="testi-avatar">
+          <div>
+            <div class="testi-name">Rahul Menon</div>
+            <div class="testi-role">Engineer turned E-Commerce Owner, Kochi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section" id="cta">
+  <div class="cta-inner">
+    <div class="cta-bg-blob cta-blob1"></div>
+    <div class="cta-bg-blob cta-blob2"></div>
+    <div class="cta-content reveal">
+      <div class="cta-tag">Limited Enrollment Open</div>
+      <h2 class="cta-title">Start Your <em>Skill Journey</em> Today</h2>
+      <p class="cta-sub">Join thousands of students from India and the GCC who are building real online income — one skill at a time. Your future self will thank you.</p>
+    </div>
+    <div class="cta-perks reveal reveal-delay-2">
+      <ul class="perk-list">
+        <li class="perk-item">
+          <div class="perk-check">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3.5 3.5 5.5-7" stroke="#7A9E8A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          Lifetime access to all course materials
+        </li>
+        <li class="perk-item">
+          <div class="perk-check">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3.5 3.5 5.5-7" stroke="#7A9E8A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          Private community + live Q&A sessions
+        </li>
+        <li class="perk-item">
+          <div class="perk-check">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3.5 3.5 5.5-7" stroke="#7A9E8A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          Certificate of completion recognized by clients
+        </li>
+        <li class="perk-item">
+          <div class="perk-check">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3.5 3.5 5.5-7" stroke="#7A9E8A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          30-day money-back guarantee — zero risk
+        </li>
+      </ul>
+      <a href="#" class="btn-cta-primary">
+        Join Now — Start Learning
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.5 9h11M10 5l4.5 4-4.5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="cta-guarantee">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L1.5 3.5v4c0 3 2.5 5.5 5.5 6 3-0.5 5.5-3 5.5-6v-4L7 1z" stroke="currentColor" stroke-width="1.2"/></svg>
+        Secure checkout · No hidden fees · Cancel anytime
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">Skill<span style="color:var(--gold)">Rise</span></a>
+        <p>Practical digital skills education for the next generation of online entrepreneurs and freelancers.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="YouTube">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 8S21.5 5.5 20 4c-1.7-1.8-3.6-1.8-4.5-1.9C13 2 12 2 12 2s-1 0-3.5.1C7.6 2.2 5.7 2.2 4 4 2.5 5.5 2 8 2 8S1.5 11 1.5 14v2.7c0 3 .5 5.3.5 5.3s.5 2.5 2 4C5.7 27.8 7.6 28 8.5 28c.7.1 3.5.1 3.5.1s1 0 3.5-.1c.9-.1 2.8-.1 4.5-1.9 1.5-1.7 2-4 2-4s.5-2.3.5-5.3V14c0-3-.5-6-.5-6z"/><polygon points="10,15 15,12 10,9" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.5M11 17v-3.5c0-1.5 1-2.5 2.5-2.5S16 12 16 13.5V17M11 10v7"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Courses</h4>
+        <ul>
+          <li><a href="#">Digital Marketing</a></li>
+          <li><a href="#">AI & ChatGPT</a></li>
+          <li><a href="#">Dropshipping</a></li>
+          <li><a href="#">Meta Ads</a></li>
+          <li><a href="#">Freelancing</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">Affiliate Program</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 SkillRise Academy. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
 <script>
-function play(el, videoId) {
+  // ── NAVBAR SCROLL ──
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
 
-  // remove active
-  document.querySelectorAll('.video').forEach(v => v.classList.remove('active'));
-  el.classList.add('active');
+  // ── HAMBURGER ──
+  document.getElementById('hamburger').addEventListener('click', function () {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+  });
 
-  // FIXED embed URL (prevents Error 153)
-  const url =
-    "https://www.youtube.com/embed/" +
-    videoId +
-    "?autoplay=1&rel=0&modestbranding=1&enablejsapi=1&origin=" +
-    window.location.origin;
+  // ── VIDEO SWITCH ──
+  function switchVideo(card) {
+    const videoId = card.dataset.videoId;
+    const category = card.dataset.category;
+    const title = card.dataset.title;
+    const player = document.getElementById('youtubePlayer');
+    const playerCategory = document.getElementById('playerCategory');
+    const playerTitle = document.getElementById('playerTitle');
 
-  document.getElementById("player").src = url;
-}
+    // Remove active from all
+    document.querySelectorAll('.vid-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+
+    // Fade out, swap, fade in
+    player.style.opacity = '0';
+    setTimeout(() => {
+      player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+      playerCategory.textContent = category;
+      playerTitle.textContent = title;
+      player.style.opacity = '1';
+    }, 250);
+
+    // Smooth scroll to player on mobile
+    if (window.innerWidth <= 768) {
+      document.getElementById('mainPlayer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // ── SCROLL REVEAL ──
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => observer.observe(el));
 </script>
-
 </body>
 </html>
